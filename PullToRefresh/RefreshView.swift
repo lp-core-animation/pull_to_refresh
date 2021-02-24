@@ -99,6 +99,15 @@ class RefreshView: UIView, UIScrollViewDelegate {
     strokeAnimationGroup.repeatDuration = 5.0
     strokeAnimationGroup.animations = [strokeStartAnimation, strokeEndAnimation]
     ovalShapeLayer.add(strokeAnimationGroup, forKey: nil)
+
+    let flightAnimation = CAKeyframeAnimation(keyPath: "position")
+    flightAnimation.path = ovalShapeLayer.path
+    flightAnimation.calculationMode = .paced
+    let flightAnimationGroup = CAAnimationGroup()
+    flightAnimationGroup.duration = 1.5
+    flightAnimationGroup.repeatDuration = 5.0
+    flightAnimationGroup.animations = [flightAnimation]
+    airplaneLayer.add(flightAnimationGroup, forKey: nil)
   }
   
   func endRefreshing() {
