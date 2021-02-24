@@ -1,2 +1,4 @@
 # pull_to_refresh
-* CAShapeLayer to draw shapes
+* CAShapeLayer to draw and animate shapes
+* layer stroke
+* layer path
