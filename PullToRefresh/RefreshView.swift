@@ -86,7 +86,19 @@ class RefreshView: UIView, UIScrollViewDelegate {
       newInsets.top += self.frame.size.height
       self.scrollView.contentInset = newInsets
     }
-    
+
+    let strokeStartAnimation = CABasicAnimation(keyPath: "strokeStart")
+    strokeStartAnimation.fromValue = -0.5
+    strokeStartAnimation.toValue = 1.0
+    let strokeEndAnimation = CABasicAnimation(keyPath: "strokeEnd")
+    strokeEndAnimation.fromValue = 0.0
+    strokeEndAnimation.toValue = 1.0
+
+    let strokeAnimationGroup = CAAnimationGroup()
+    strokeAnimationGroup.duration = 1.5
+    strokeAnimationGroup.repeatDuration = 5.0
+    strokeAnimationGroup.animations = [strokeStartAnimation, strokeEndAnimation]
+    ovalShapeLayer.add(strokeAnimationGroup, forKey: nil)
   }
   
   func endRefreshing() {
