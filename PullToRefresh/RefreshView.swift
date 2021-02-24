@@ -41,6 +41,17 @@ class RefreshView: UIView, UIScrollViewDelegate {
                                                       width: 2 * refreshRadius,
                                                       height: 2 * refreshRadius)).cgPath
     layer.addSublayer(ovalShapeLayer)
+
+    let airplaneImage = UIImage(named: "airplane.png")!
+    airplaneLayer.contents = airplaneImage.cgImage
+    airplaneLayer.bounds = CGRect(x: 0.0,
+                                  y: 0.0,
+                                  width: airplaneImage.size.width,
+                                  height: airplaneImage.size.height)
+    airplaneLayer.position = CGPoint(x: frame.size.width/2 + frame.size.height/2 * 0.8,
+                                     y: frame.size.height/2)
+    layer.addSublayer(airplaneLayer)
+    airplaneLayer.opacity = 0.0
   }
   
   required init(coder aDecoder: NSCoder) {
@@ -95,7 +106,7 @@ class RefreshView: UIView, UIScrollViewDelegate {
   }
   
   func redrawFromProgress(_ progress: CGFloat) {
-    
+    ovalShapeLayer.strokeEnd = progress
+    airplaneLayer.opacity = Float(progress)
   }
-  
 }
